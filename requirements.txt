@@ -1,0 +1,5 @@
+pdftotext
+tensorflow
+transformers
+pymongo
+streamlit

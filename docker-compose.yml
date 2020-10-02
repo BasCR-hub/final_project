@@ -1,0 +1,7 @@
+version: "3.8"
+services:
+  app:
+    image: img_project
+    volumes:
+      - /home/bastien/dev_work/pubpoldb/final_project:/app
+
