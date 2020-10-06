@@ -4,4 +4,5 @@ services:
     image: img_project
     volumes:
       - /home/bastien/dev_work/pubpoldb/final_project:/app
-
+    ports:
+      - "5000:5000"

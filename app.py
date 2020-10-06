@@ -4,7 +4,7 @@ import re
 import os
 
 st.title('Search pdf app')
-st.write('test_again_again')
+st.write('testtest')
 lst_pdfs = [element for element in os.listdir() if element.endswith('.pdf')]
 pdf_selected = st.selectbox('Choose a pdf',lst_pdfs)
 

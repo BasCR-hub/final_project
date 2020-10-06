@@ -1,6 +1,6 @@
 FROM python:3.7-slim
 WORKDIR ./app
-EXPOSE 8501
+#EXPOSE 8501
 COPY . .
 RUN apt-get update
 RUN apt-get -y install curl
