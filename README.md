@@ -1,4 +1,5 @@
-# Which country is the best at XX : an app to identify best practices oin public policy
+# Which country is the best at XX ? 
+## An app to identify best practices oin public policy
 
 This app is aimed at public policy makers and analysts looking for inspiration from abroad on how to tackle specific issues. The site is accessible at <insert url>
 
@@ -6,14 +7,14 @@ For instance, typing "Financing SME innovation" or "Improving access to healthca
 
 The user can then dig deeper into those leads.
 
-## Database
+### Database
 
 In this first version, the database consists of only World Bank's Open Knowledge Repository publications (listed under the 'Knowledge Notes' and accessible at https://openknowledge.worldbank.org/handle/10986/9387) in the English language.
 
 Later versions will diversify the sources to include publications from other international organizations (OECD, IMF, UN agencies...)
 
 
-## Under the hood
+### Under the hood
 #### Data collection
 The data collection was done in two stages:
 1. A first pass over the World Bank's Open Knowledge Repository to collect document metadata (title, abstract, publication date...) and collect the pdf report's download url.
