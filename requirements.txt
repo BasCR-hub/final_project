@@ -3,3 +3,6 @@ tensorflow
 transformers
 pymongo
 streamlit
+pytesseract
+PIL
+pdf2image
