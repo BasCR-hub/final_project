@@ -6,3 +6,5 @@ streamlit
 pytesseract
 PIL
 pdf2image
+nltk
+sentence-transformers
