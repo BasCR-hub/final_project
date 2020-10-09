@@ -1,16 +1,11 @@
-import pymongo
-from pymongo import MongoClient,ReturnDocument
-from bson import ObjectId
+import requests
 import requests
 from PIL import Image 
 import pytesseract 
-import sys 
 from pdf2image import convert_from_path,pdfinfo_from_path
 from pdf2image.exceptions import PDFSyntaxError,PDFPageCountError
 import os
 import glob
-import time
-
 
 def download_pdf(url,storage_dir,title):
     r = requests.get(url, allow_redirects=True)
@@ -52,18 +47,3 @@ def delete_temp_content(storage_dir):
     files = glob.glob(f'./{storage_dir}/*')
     for f in files:
         os.remove(f)
-
-def search_through_text(txt,list_search_terms):
-    dict_occurrences= {}
-    for sentence in txt:
-        for country_name in list_search_terms:
-            if country_name in sentence:
-                if country_name in dict_occurrences:
-                    dict_occurrences[dict_countries[country_name]] += 1
-                elif country_name not in dict_occurrences:
-                    dict_occurrences[dict_countries[country_name]] = 1        
-    return dict_occurrences
-
-def split_txt_into_sentences(txt):
-    temp_txt = txt.replace('-\n','').replace('\n',' ').lower()
-    return sent_tokenize(temp_txt)

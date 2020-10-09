@@ -1,22 +1,27 @@
 import streamlit as st
-import pdftotext
-import re
-import os
+from search import embed_query,find_high_cos_similarity,extract_country_info,extract_document_info
+from database.db_connection import make_db_connection
+from sentence_transformers import SentenceTransformer
 
-st.title('Search pdf app')
-st.write('testtest')
-lst_pdfs = [element for element in os.listdir() if element.endswith('.pdf')]
-pdf_selected = st.selectbox('Choose a pdf',lst_pdfs)
+embedding_model = SentenceTransformer('bert-base-nli-mean-tokens')
+mongocollection = make_db_connection()
 
-## choose pdf
-with open(pdf_selected, "rb") as f:
-    pdf = pdftotext.PDF(f)
-full_text = "\n\n".join(pdf)
-full_text = full_text.replace("\n",' ').lower()
-full_text = re.split(r'[.] ',full_text)
+st.title('Which country is the best at what')
+
+query = st.text_input("what are you interested in ?")
+if query:
+    embedded_query = embed_query(embedding_model,query)
+    lst_ids_of_interest,lst_super_ids = find_high_cos_similarity(mongocollection,embedded_query)
+    lst_most_mentioned, dict_most_mentioned = extract_country_info(mongocollection,lst_ids_of_interest)
+    st.write("Very interesting topic indeed !  Check out what the following countries have done:")
+    for country in lst_most_mentioned[:5]:
+        st.write(country.capitalize())
+    
+    super_documents = extract_document_info(mongocollection,lst_super_ids)
+    st.write(' ')
+    st.write('In particular, the following documents might be of interest to you')
+    st.write(super_documents)
 
 
-check_string = st.text_input("enter search term")
 
-search_results = [sentence for sentence in full_text if check_string.lower() in sentence]
-st.write(search_results)
+        
